@@ -5,6 +5,23 @@ const { crudOperationsManager } = require('../../lib');
 const Mod = require('./modModel');
 
 /**
+ * @swagger
+ * /mod/leaderboard:
+ *  put:
+ *    summary: This endpoint triggers an update that will calculate all of the cumulative leaderboard points for each child.
+ *    tags:
+ *      - Moderation
+ *    responses:
+ *      200:
+ *        $ref: '#/components/responses/EmptySuccess'
+ *      500:
+ *        $ref: '#/components/responses/DatabaseError'
+ */
+router.put('/leaderboard-calculation', async (req, res) => {
+  crudOperationsManager.getAll(res, Mod.leaderboardCalculation, 'Leaderboard');
+});
+
+/**
  * Data types for mod operations
  * @swagger
  * components:
