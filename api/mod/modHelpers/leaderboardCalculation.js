@@ -14,7 +14,7 @@ const accumulatePoints = async (type = null) => {
     // We're only grabbing the name for debugging purposes, it's not necessary
     .select('C.Name as ChildName')
 
-    // We'r eonly grabbing the Submission ID for debugging purposes, it's not necessary
+    // We're only grabbing the Submission ID for debugging purposes, it's not necessary
     .select('S.ID as SubmissionID')
 
     // Retrieve the sum of ALL points the child has earned and store it in a variable called "TotalPoints"
