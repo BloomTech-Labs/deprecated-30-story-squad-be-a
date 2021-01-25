@@ -1,7 +1,7 @@
 const db = require('../../data/db-config');
 const { dbOps, formatCohortSubmissions } = require('../../lib');
 const faceoff = require('./faceoffGeneration');
-const { result, clusterGeneration } = require('./modHelpers');
+const { result, clusterGeneration, leaderboardCalculation } = require('./modHelpers');
 
 /**
  * Queries the database for a list of all current cohorts
@@ -99,6 +99,7 @@ const calculateResultsForTheWeek = () => {
 };
 
 module.exports = {
+  leaderboardCalculation,
   clusterGeneration,
   getCohorts,
   addCohort,
