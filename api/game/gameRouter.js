@@ -297,7 +297,7 @@ router.get('/team', authRequired, (req, res) => {
 });
 
 /**
- * @swagger
+ * @swaggerq
  * /game/squads?cohortId=${cohortId}
  */
 router.get('/squads', authRequired, (req, res) => {

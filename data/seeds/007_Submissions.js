@@ -1,4 +1,4 @@
-const submissions = [...new Array(8)].map((i, idx) => ({
+const submissions = [...new Array(16)].map((i, idx) => ({
   ChildID: `${idx + 1}`,
   StoryID: 1,
   HasRead: true,
