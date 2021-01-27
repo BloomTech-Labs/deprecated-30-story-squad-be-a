@@ -303,8 +303,8 @@ router.get('/team', authRequired, (req, res) => {
 
 /**
  * @swagger
- * /game/squads?cohortId=${cohortId}
- * *  get:
+ * /game/team?cohortId={id}:
+ *  get:
  *    summary: returns an array of objects containing the number of squads created, given a cohortId
  *    security:
  *      - okta: []
@@ -325,7 +325,6 @@ router.get('/team', authRequired, (req, res) => {
  *                  description: this is the squad ID
  *              example:
  *                ID: 1
- *                ID: 2
  *      400:
  *        $ref: '#/components/responses/InvalidFormat'
  *      401:

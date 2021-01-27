@@ -64,7 +64,7 @@ const getSquadIDForBots = (SquadID) => {
     .whereNot({
       ID: SquadID
     })
-    .select('S.ID')
+    .select('S.ID');
 }
 /**
  * This query returns all squad numbers based on the cohortID as a parameter
@@ -104,7 +104,6 @@ const getFaceoffsForSquad = (SquadID, ChildID = null) => {
   return db.transaction(async (trx) => {
     try {
       // Get the faceoffs from the Faceoffs table in the db
- 
       const faceoffs = await faceoff.getSubIdsForFaceoffs(trx, SquadID, ChildID);
 
       // Check the length of faceoffs if it is less than 0 return an error
