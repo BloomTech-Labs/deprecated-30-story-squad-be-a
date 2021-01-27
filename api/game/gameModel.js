@@ -56,13 +56,25 @@ const assignPoints = (points) => {
  * only adding submissions from squads that are not 
  * in the current squad
  * @param {number} SquadID 
- * @returns {Promise} returns a problems that resolves to an ID
+ * @returns {Promise} returns a promise that resolves to an ID
  */
 const getSquadIDForBots = (SquadID) => {
   return db('Submissions as Sub')
     .join('Squads as S', 'Sub.ID', '=', 'S.ID' )
     .whereNot({
       ID: SquadID
+    })
+    .select('S.ID')
+}
+/**
+ * This query returns all squad numbers based on the cohortID as a parameter
+ * @param {number} CohortID integer of cohort that we want all squad numbers from 
+ * @returns {array} returns array of objects containing squad numbers 
+ *  */ 
+const getTotalNumOfSquads = (CohortID) => {
+  return db('Squads as S')
+    .where({
+      CohortID: CohortID
     })
     .select('S.ID')
 }
@@ -222,6 +234,7 @@ module.exports = {
   assignPoints,
   getFaceoffsForSquad,
   getSquadIDFromChildID,
+  getTotalNumOfSquads,
   getVotesBySquad,
   submitVote,
   getSquadResults,

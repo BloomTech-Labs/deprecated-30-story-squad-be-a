@@ -298,6 +298,17 @@ router.get('/team', authRequired, (req, res) => {
 
 /**
  * @swagger
+ * /game/squads?cohortId=${cohortId}
+ */
+router.get('/squads', authRequired, (req, res) => {
+  const cohortId = req.query.cohortId;
+
+  crudOperationsManager.getAll(res, Game.getTotalNumOfSquads, 'CohortID', cohortId);
+});
+
+
+/**
+ * @swagger
  * /game/points:
  *  post:
  *    summary: Send a child's point assignments to the server to be stored
