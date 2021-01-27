@@ -14,9 +14,6 @@ const accumulatePoints = async (type = null) => {
     // We're only grabbing the name for debugging purposes, it's not necessary
     .select('C.Name as ChildName')
 
-    // We're only grabbing the Submission ID for debugging purposes, it's not necessary
-    .select('S.ID as SubmissionID')
-
     // Retrieve the sum of ALL points the child has earned and store it in a variable called "TotalPoints"
     // COALESCE is used to ensure that Children who have never received points do not return NULL, and instead we
     // return a total sum of 0
@@ -33,17 +30,17 @@ const accumulatePoints = async (type = null) => {
       // We use an "OR" statement here because it's possible to be in either SubmissionID1 or SubmissionID2
       // We also want to make sure we retrieve the Faceoffs where the child has won
       db.raw(`
-        ("F"."Winner" = "F"."SubmissionID1" and "F"."SubmissionID1" = "S"."ID")
+        ("F"."Winner" = 1 and "F"."SubmissionID1" = "S"."ID")
         OR
-        ("F"."Winner" = "F"."SubmissionID2" and "F"."SubmissionID2" = "S"."ID")
+        ("F"."Winner" = 2 and "F"."SubmissionID2" = "S"."ID")
       `)
     )
 
     // We group by the Child and Submission ID to ensure that the children do not come back as duplicate records
-    .groupBy('C.ID', 'S.ID');
+    .groupBy('C.ID');
 
   if (type) {
-    query.groupBy('C.ID', 'S.ID', 'F.Type');
+    query.groupBy('C.ID', 'F.Type');
     query.where('F.Type', type);
   }
 
@@ -54,6 +51,7 @@ const accumulatePoints = async (type = null) => {
     childrenPoints.map((record) => {
       const updateQuery = db('Children').where('ID', record.ChildID);
       let updateColumn = 'Total_Points';
+      console.log("CHILDREN POINTS: ", childrenPoints);
 
       if (type && type === 'DRAWING') {
         updateColumn = 'Drawing_Points';
