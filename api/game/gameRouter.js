@@ -260,7 +260,12 @@ const Game = require('./gameModel');
 router.get('/squad', authRequired, (req, res) => {
   const childId = req.query.childId;
 
-  crudOperationsManager.getById(res, Game.getSquadIDFromChildID, 'Child', childId);
+  crudOperationsManager.getById(
+    res,
+    Game.getSquadIDFromChildID,
+    'Child',
+    childId
+  );
 });
 
 /**
@@ -297,15 +302,49 @@ router.get('/team', authRequired, (req, res) => {
 });
 
 /**
- * @swaggerq
+ * @swagger
  * /game/squads?cohortId=${cohortId}
+ * *  get:
+ *    summary: returns an array of objects containing the number of squads created, given a cohortId
+ *    security:
+ *      - okta: []
+ *    tags:
+ *      - Gamification
+ *    parameters:
+ *      - $ref: '#/components/parameters/cohortId'
+ *    responses:
+ *      200:
+ *        description: Returns objects containing numbers of squads created
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                ID:
+ *                  type: integer
+ *                  description: this is the squad ID
+ *              example:
+ *                ID: 1
+ *                ID: 2
+ *      400:
+ *        $ref: '#/components/responses/InvalidFormat'
+ *      401:
+ *        $ref: '#/components/responses/UnauthorizedError'
+ *      404:
+ *        $ref: '#/components/responses/NotFound'
+ *      500:
+ *        $ref: '#/components/responses/DatabaseError'
  */
 router.get('/squads', authRequired, (req, res) => {
   const cohortId = req.query.cohortId;
 
-  crudOperationsManager.getAll(res, Game.getTotalNumOfSquads, 'CohortID', cohortId);
+  crudOperationsManager.getAll(
+    res,
+    Game.getTotalNumOfSquads,
+    'CohortID',
+    cohortId
+  );
 });
-
 
 /**
  * @swagger
@@ -383,7 +422,13 @@ router.post('/points', authRequired, (req, res) => {
 router.get('/faceoffs', authRequired, (req, res) => {
   const squadId = req.query.squadId;
   const childId = req.query.childId || null;
-  crudOperationsManager.getAll(res, Game.getFaceoffsForSquad, 'Squad', squadId, childId);
+  crudOperationsManager.getAll(
+    res,
+    Game.getFaceoffsForSquad,
+    'Squad',
+    squadId,
+    childId
+  );
 });
 
 /**
@@ -420,7 +465,13 @@ router.get('/votes', authRequired, (req, res) => {
   const squadId = req.query.squadId;
   const memberId = req.query.memberId;
 
-  crudOperationsManager.getAll(res, Game.getVotesBySquad, '', squadId, memberId);
+  crudOperationsManager.getAll(
+    res,
+    Game.getVotesBySquad,
+    '',
+    squadId,
+    memberId
+  );
 });
 
 /**
