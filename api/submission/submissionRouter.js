@@ -210,7 +210,12 @@ router.get('/child/:id', authRequired, async (req, res) => {
   // Pull child ID out of URL parameter
   const { id } = req.params;
 
-  crudOperationsManager.getAll(res, Submissions.getAllSubmissionsByChild, 'Submission', id);
+  crudOperationsManager.getAll(
+    res,
+    Submissions.getAllSubmissionsByChild,
+    'Submission',
+    id
+  );
 });
 
 /**
@@ -383,7 +388,12 @@ router.delete('/write/:id', authRequired, async (req, res) => {
   // Pull submission ID out of the URL parameter
   const { id } = req.params;
 
-  crudOperationsManager.update(res, Submissions.deleteWritingSubmission, 'Submission', id);
+  crudOperationsManager.update(
+    res,
+    Submissions.deleteWritingSubmission,
+    'Submission',
+    id
+  );
 });
 
 /**
@@ -411,7 +421,12 @@ router.delete('/draw/:id', authRequired, async (req, res) => {
   // Pull submission ID out of the URL parameter
   const { id } = req.params;
 
-  crudOperationsManager.update(res, Submissions.deleteDrawingSubmission, 'Submission', id);
+  crudOperationsManager.update(
+    res,
+    Submissions.deleteDrawingSubmission,
+    'Submission',
+    id
+  );
 });
 
 module.exports = router;
