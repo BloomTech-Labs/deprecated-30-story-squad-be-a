@@ -21,6 +21,7 @@ const countVotes = async (conn) => {
     // Increment the vote for the relevant team
     res[ID][Vote]++;
   });
+
   // Iterate over the voting results and conditionally declare a winner
   for (let f in res) {
     if (res[f][1] > res[f][2]) res[f].Winner = 1;

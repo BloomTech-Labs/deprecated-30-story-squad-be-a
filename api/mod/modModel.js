@@ -1,6 +1,7 @@
 const db = require('../../data/db-config');
 const { dbOps, formatCohortSubmissions } = require('../../lib');
 const faceoff = require('./faceoffGeneration');
+// eslint-disable-next-line prettier/prettier
 const { result, clusterGeneration, leaderboardCalculation } = require('./modHelpers');
 
 /**

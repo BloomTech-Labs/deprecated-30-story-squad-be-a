@@ -226,6 +226,7 @@ router.post('/cohorts', (req, res) => {
 router.get('/submissions', (req, res) => {
   const cohortId = req.query.cohortId;
 
+  // eslint-disable-next-line prettier/prettier
   crudOperationsManager.getAll(res, Mod.getSubmissionsByCohort, 'Cohort', cohortId);
 });
 
@@ -266,6 +267,7 @@ router.put('/submissions/:id', (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
+  // eslint-disable-next-line prettier/prettier
   crudOperationsManager.update(res, Mod.moderatePost, 'Submission', id, changes);
 });
 
