@@ -51,7 +51,7 @@ const accumulatePoints = async (type = null) => {
     childrenPoints.map((record) => {
       const updateQuery = db('Children').where('ID', record.ChildID);
       let updateColumn = 'Total_Points';
-      console.log("CHILDREN POINTS: ", childrenPoints);
+      console.log('CHILDREN POINTS: ', childrenPoints);
 
       if (type && type === 'DRAWING') {
         updateColumn = 'Drawing_Points';
