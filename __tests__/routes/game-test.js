@@ -483,5 +483,13 @@ module.exports = () => {
         expect(res.body.error).toBe('Missing parameters.');
       });
     });
+
+    describe('PUT /mod/leaderboard-calculation', () => {
+      it('calculates users points for leaderboard', async () => {
+        const res = await request(server).put('/mod/leaderboard-calculation');
+
+        expect(res.status).toBe(200);
+      });
+    });
   });
 };
