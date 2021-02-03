@@ -186,6 +186,11 @@ const submitVote = (vote) => {
   // return db('Votes').insert(vote).returning('ID');
   return db.transaction(async (trx) => {
     try {
+      // This keeps track of total votes per faceoffID
+      await trx('Faceoffs')
+        .where({ ID: vote.FaceoffID })
+        .increment('TotalVotes', 1);
+
       const { Vote, MemberID, FaceoffID, subEmojis1, subEmojis2 } = vote;
       const returning = await trx('Votes')
         .insert({ Vote, MemberID, FaceoffID })
