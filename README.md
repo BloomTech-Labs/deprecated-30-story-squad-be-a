@@ -74,6 +74,7 @@ There are 3 options to get postgresql installed locally [Choose one]:
 
 ## Useful Info
 
+- Getting started - Front End/Back End | Current State of the App/Broken Features | from Labs 30 [here] (https://youtu.be/moxlhDR3_G0)
 - Walkthrough video explaining some of the features can be seen [here](https://www.youtube.com/watch?v=K5k19qWKHbI&feature=youtu.be)
 - View a detailed explanation of the S3 upload middleware [here](https://medium.com/@bran.ramirez.don/s3-file-upload-from-antdesign-394b9ca05de2)
 - The S3 upload middleware was designed to play nicely with the frontend UploadDocs component
